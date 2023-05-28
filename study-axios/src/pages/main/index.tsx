@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+import type Data from '../types';
 
 const Main = () => {
   // const getData = async () => {
@@ -13,7 +14,7 @@ const Main = () => {
   // const DATA = getPokemonData;
   // console.log(getPokemonData);
 
-  const [data, setData] = useState<Array<{name: string; url: string}[]>>([]);
+  const [data, setData] = useState<Data[]>([]); // <Array<{name: string; url: string}[]>>
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<unknown | null>(null);
 
@@ -34,21 +35,22 @@ const Main = () => {
   }, []);
 
   if(loading) return <div>loading...</div>;
-  if(error) return <div>error!!!</div>
+  if(error) return <div>error!!!</div>;
   if(!data) return null;
-
-  data.map(({url}) => {
-    console.log(url);
-  });
   
-  // return(
-  //   <ul>
-  //     {data.map(item => {
-  //       return <li></li>;
-  //     })}
-  //   </ul>
-  // );
-  return <></> ;
+  // data.map((value):void => {
+  //   console.log(value);
+  // });
+  
+  return(
+    <ul>
+      {
+        data.map(({name}, index) => {
+          return <li key={index}>{name}</li>;
+        })
+      }
+    </ul>
+  );
 }
 
 export default Main;
