@@ -38,10 +38,6 @@ const Main = () => {
   if(error) return <div>error!!!</div>;
   if(!data) return null;
   
-  // data.map((value):void => {
-  //   console.log(value);
-  // });
-  
   return(
     <ul>
       {
